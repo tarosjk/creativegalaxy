@@ -48,4 +48,6 @@ wp-config.php
 #/wp-content/themes
 
 
+/wp-content/themes/creativegalaxy/assets/js/slick
+
 # End of https://www.toptal.com/developers/gitignore/api/wordpress
