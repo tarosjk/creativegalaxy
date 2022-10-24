@@ -49,5 +49,6 @@ wp-config.php
 
 
 /wp-content/themes/creativegalaxy/assets/js/slick
+/wp-content/themes/creativegalaxy/assets/js/vendors
 
 # End of https://www.toptal.com/developers/gitignore/api/wordpress
