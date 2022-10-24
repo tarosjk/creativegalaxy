@@ -23,6 +23,8 @@
 
   <!-- Theme style -->
   <link rel="stylesheet" href="./assets/css/style.min.css">
+
+  <?php wp_head(); ?>
 </head>
 
 <body>
