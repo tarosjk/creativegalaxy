@@ -12,15 +12,6 @@
     </ul>
   </footer>
 
-  <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
-    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-
-  <!-- Slick -->
-  <script src="./assets/js/vendors/slick/slick.min.js"></script>
-
-  <!-- Theme Script -->
-  <script src="./assets/js/script.js"></script>
 
   <?php wp_footer(); ?>
 </body>
