@@ -3,6 +3,7 @@
 function my_setup_theme()
 {
   add_theme_support('title-tag');
+  add_theme_support('menus');
 }
 add_action('after_setup_theme','my_setup_theme');
 // add_action('WPの関数名', '自分の関数');
@@ -31,6 +32,7 @@ function my_enqueue_scripts()
 
   // jQuery（WordPress版）を使用しない
   // wp_deregister_script('jquery');
+  wp_enqueue_script('jquery');
 
   if( is_front_page() ){
     wp_enqueue_script('slick', get_template_directory_uri() . '/assets/js/vendors/slick/slick.min.js',[], false, true);

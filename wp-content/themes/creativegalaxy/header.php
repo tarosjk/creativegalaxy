@@ -12,13 +12,13 @@
 
   <header class="site-header">
     <h1 class="site-header-logo">
-      <a href="#">Creative Galaxy</a>
+      <a href="#"><?php bloginfo('name'); ?></a>
     </h1>
 
     <button class="site-header-nav-btn" id="nav-btn"></button>
 
     <div class="site-header-nav-container">
-      <nav class="site-header-nav">
+      <!-- <nav class="site-header-nav">
         <ul>
           <li>
             <a href="#">Home</a>
@@ -36,7 +36,14 @@
             <a href="#">Contact</a>
           </li>
         </ul>
-      </nav>
+      </nav> -->
+      <?php
+      wp_nav_menu([
+        'menu' => 'globalnav',
+        'container' => 'nav',
+        'container_class' => 'site-header-nav',
+      ]);
+      ?>
       <form action="" class="site-header-search">
         <input type="search" name="s">
         <button class="site-header-search-btn"></button>
