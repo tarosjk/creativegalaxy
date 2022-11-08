@@ -5,6 +5,7 @@ function my_setup_theme()
   add_theme_support('title-tag');
   add_theme_support('menus');
   add_theme_support('post-thumbnails');
+  add_theme_support('editor-styles');
 }
 add_action('after_setup_theme','my_setup_theme');
 // add_action('WPの関数名', '自分の関数');
@@ -49,3 +50,10 @@ function my_pagenavi_class_pages($class) {
   return 'my_pagenavi_class'; //ページネーションのdivのクラス名
 }
 add_filter('wp_pagenavi_class_page', 'my_pagenavi_class_pages');
+
+
+function my_add_editor_style()
+{
+  add_editor_style('assets/css/editor-style.min.css');
+}
+add_action('admin_init', 'my_add_editor_style');
