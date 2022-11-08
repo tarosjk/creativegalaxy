@@ -64,24 +64,24 @@
       <div class="container">
         <h2 class="section-h">News</h2>
         <ul class="news-list top-news-list">
+          <?php
+          $news_items = new WP_Query([
+            'post_type' => 'post', //投稿のデータを取得(省略可)
+            'orderby' => 'date', //並び順は日付で(省略可)
+            'order' => 'DESC', //降順(省略可)
+            'posts_per_page' => 3 //3件取得(デフォルトは確か5)
+          ]);
+          ?>
+          <?php if($news_items->have_posts()): while($news_items->have_posts()): $news_items->the_post(); ?>
           <li>
-            <a href="#">
-              <time datetime="2022-10-11">2022.10.11</time>
-              【Webセミナー】拡散を起こす“戦略的”なタイアッププロモーション ～売上につながる新時代のエンタメ活用法とは～（事業会社限定）
+            <a href="<?php the_permalink(); ?>">
+              <time datetime="<?php the_time('Y-m-d'); ?>"><?php the_time('Y.m.d'); ?></time>
+              <?php the_title(); ?>
             </a>
           </li>
-          <li>
-            <a href="#">
-              <time datetime="yyyy-mm-dd">2022.09.08</time>
-              【Webセミナー】ソーシャルメディアアカウント進化論 ～ソーシャル時代の中核を担うアカウント運用のこれから～（事業会社限定）
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <time datetime="yyyy-mm-dd">2022.08.24</time>
-              【Webセミナー】ファンマーケティングを失敗で終わらせないために ～考え方から実践までを事例で解説～
-            </a>
-          </li>
+          <?php endwhile;
+          wp_reset_postdata();//$postの内容をメインクエリの内容に戻す
+        endif; ?>
         </ul>
         <div class="btn-container text-center">
           <a href="#" class="btn btn-normal">view more</a>
