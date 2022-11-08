@@ -36,7 +36,7 @@
   </div>
 
   <div class="btn-container text-center">
-    <a href="#" class="btn btn-normal">ニュース一覧へ戻る</a>
+    <a href="<?= home_url(); ?>/news/" class="btn btn-normal">ニュース一覧へ戻る</a>
   </div>
 </div>
 
