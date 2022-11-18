@@ -84,7 +84,7 @@
         endif; ?>
         </ul>
         <div class="btn-container text-center">
-          <a href="#" class="btn btn-normal">view more</a>
+          <a href="<?= get_the_permalink(78); ?>" class="btn btn-normal">view more</a>
         </div>
       </div>
     </section>
