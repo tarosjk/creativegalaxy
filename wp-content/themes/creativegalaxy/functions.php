@@ -57,3 +57,20 @@ function my_add_editor_style()
   add_editor_style('assets/css/editor-style.min.css');
 }
 add_action('admin_init', 'my_add_editor_style');
+
+
+// カスタム投稿タイプアーカイブページ（作品一覧ページ）
+// カスタムタクソノミーアーカイブページ（例. Web Designカテゴリページ）
+add_action('pre_get_posts', 'my_works_post_num');
+function my_works_post_num( $query )
+{
+  // カスタム投稿タイプ(works)一覧ページ用（6件/ページ）
+  if( $query->is_main_query() && is_post_type_archive('works') && !is_admin() ) {
+    $query->set('posts_per_page', 6);
+  }
+
+  // カスタムタクソノミー(workscat)一覧ページ用（6件/ページ）
+  if( $query->is_main_query() && is_tax('workscat') && !is_admin() ) {
+    $query->set('posts_per_page', 6);
+  }
+}
