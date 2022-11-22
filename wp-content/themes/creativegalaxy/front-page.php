@@ -23,39 +23,22 @@
         <h2 class="section-h">Works</h2>
         <p class="section-lead">最新制作実績の紹介</p>
         <div class="top-works-list">
-          <article class="card top-works-item">
-            <div class="card-img">
-              <a href="#"><img src="https://picsum.photos/id/1081/600/400" alt=""></a>
-            </div>
-            <ul class="card-cat cat-link">
-              <li><a href="">abc</a></li>
-              <li><a href="">xyz</a></li>
-            </ul>
-            <h3 class="card-title"><a href="#">Awesome Architect</a></h3>
-          </article>
-          <article class="top-works-item card">
-            <div class="card-img">
-              <a href="#"><img src="https://picsum.photos/id/1000/600/400" alt=""></a>
-            </div>
-            <ul class="card-cat cat-link">
-              <li><a href="">abc</a></li>
-              <li><a href="">xyz</a></li>
-            </ul>
-            <h3 class="card-title"><a href="#">Summit Church</a></h3>
-          </article>
-          <article class="top-works-item card">
-              <div class="card-img">
-                <a href="#"><img src="https://picsum.photos/id/953/600/400" alt=""></a>
-              </div>
-              <ul class="card-cat cat-link">
-                <li><a href="">abc</a></li>
-                <li><a href="">xyz</a></li>
-              </ul>
-              <h3 class="card-title"><a href="#">Distroted Library</a></h3>
-          </article>
+          <?php
+            $works = new WP_Query([
+              'post_type' => 'works',
+              'posts_per_page' => 3 
+            ]);
+          ?>
+          <?php if( $works->have_posts() ): while( $works->have_posts() ): $works->the_post(); ?>
+            
+            <?php get_template_part('templates/work-list'); ?>
+
+          <?php endwhile; 
+          wp_reset_postdata();
+        endif; ?>
         </div>
         <div class="btn-container text-center">
-          <a href="#" class="btn btn-normal">view more</a>
+          <a href="<?= home_url(); ?>/works" class="btn btn-normal">view more</a>
         </div>
       </div>
     </section>
