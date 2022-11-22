@@ -30,6 +30,11 @@ function my_enqueue_scripts()
     wp_enqueue_style('slick-theme', get_template_directory_uri() . '/assets/js/vendors/slick/slick-theme.css');
   }
 
+  // Photoswipe(作品の詳細ページのみ)
+  if( is_singular('works') ) {
+    wp_enqueue_style('photoswipe', get_template_directory_uri() . '/assets/js/vendors/photoswipe/photoswipe.css');
+  }
+
   wp_enqueue_style('galaxy', get_template_directory_uri() . '/assets/css/style.min.css');
 
   // jQuery（WordPress版）を使用しない
@@ -44,6 +49,29 @@ function my_enqueue_scripts()
 
 }
 add_action('wp_enqueue_scripts', 'my_enqueue_scripts');
+
+
+function my_wp_footer()
+{
+  if( is_singular('works') ) {
+    wp_print_inline_script_tag("
+    
+    import PhotoSwipeLightbox from '" . get_template_directory_uri() . "/assets/js/vendors/photoswipe/photoswipe-lightbox.esm.js'
+    const lightbox = new PhotoSwipeLightbox({
+      gallery: '#works-gallery',
+      children: 'a',
+      pswpModule: () => import('" . get_template_directory_uri() . "/assets/js/vendors/photoswipe/photoswipe.esm.js')
+    })
+    lightbox.init();
+    
+    ",
+    [
+      'type' => 'module'
+    ]
+  );
+  }
+}
+add_action('wp_footer', 'my_wp_footer', 99);
 
 
 function my_pagenavi_class_pages($class) {

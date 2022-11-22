@@ -19,33 +19,39 @@
           <div class="works-cat cat-link">
             <?= get_the_term_list(get_the_ID(), 'workscat'); ?>
           </div>
-          
+
           <div class="works-desc">
             <?php the_content(); ?>
           </div>
 
+          <?php if( $gallery = SCF::get('works_gallery') ): ?>
           <div class="works-gallery" id="works-gallery">
-            <a href="./assets/img/works/work01-1.jpg" data-pswp-width="600" data-pswp-height="400" target="_blank">
-              <img src="./assets/img/works/work01-1.jpg" alt="">
+            <?php foreach( $gallery as $img ): ?>
+              <?php
+                $img_src = wp_get_attachment_image_src($img['works_img'],'full');
+              ?>
+            <a href="<?= $img_src[0]; ?>">
+              <img src="<?= $img_src[0]; ?>" alt="">
             </a>
-            <a href="./assets/img/works/work01-2.jpg" data-pswp-width="600" data-pswp-height="400" target="_blank">
-              <img src="./assets/img/works/work01-2.jpg" alt="">
-            </a>
-            <a href="./assets/img/works/work01-3.jpg" data-pswp-width="600" data-pswp-height="400" target="_blank">
-              <img src="./assets/img/works/work01-3.jpg" alt="">
-            </a>
+            <?php endforeach; ?>
           </div>
+          <?php endif; ?>
+
         </div>
       </article>
   <?php endwhile;
   endif; ?>
 
   <div class="page-nav works-page-nav">
-    <a href="#" class="prev" rel="prev">前の作品</a>
-    <a href="#" class="next" rel="next">次の作品</a>
+    <?php if (get_previous_post()) : ?>
+      <?= get_previous_post_link('%link'); ?>
+    <?php endif; ?>
+    <?php if (get_next_post()) : ?>
+      <?= get_next_post_link('%link'); ?>
+    <?php endif; ?>
   </div>
   <div class="btn-container text-center">
-    <a href="#" class="btn btn-normal">Works一覧へ戻る</a>
+    <a href="<?= home_url(); ?>/works" class="btn btn-normal">Works一覧へ戻る</a>
   </div>
 </div>
 
